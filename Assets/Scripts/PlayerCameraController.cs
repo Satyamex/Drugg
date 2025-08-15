@@ -30,7 +30,7 @@ internal sealed class PlayerCameraController : MonoBehaviour
             Yrot += mouseX * cameraSensitivity;
 
             camAnchorTransform.localRotation = Quaternion.Euler(new Vector3(Xrot, 0f, 0f));
-            playerTransform.localRotation = Quaternion.Euler(new Vector3(0f, Yrot, 0f));
+            playerTransform.rotation = Quaternion.Euler(new Vector3(0f, Yrot, 0f));
         }
 
         else if (isPaused) 

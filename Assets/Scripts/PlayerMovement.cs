@@ -9,20 +9,14 @@ internal sealed class PlayerMovement : MonoBehaviour
     [SerializeField] private float moveSpeed;
     [SerializeField] private float movementInteprolation;
 
-    private Vector3 moveDirection, finalMoveDirection = default;
-    private float inputX, inputY = default;
+    private Vector3 finalMoveDirection, inputDirection, targetDirection = default;
 
     private void Update()
     {
-        inputX = Input.GetAxisRaw("Horizontal");
-        inputY = Input.GetAxisRaw("Vertical");
-        moveDirection = new Vector3(inputX, 0f, inputY);
+        inputDirection = new Vector3(Input.GetAxisRaw("Horizontal"), 0f, Input.GetAxisRaw("Vertical"));
+        targetDirection = (player.transform.right * inputDirection.x + player.transform.forward * inputDirection.z).normalized;
 
-        finalMoveDirection.x = Mathf.MoveTowards(player.transform.position.x, moveDirection.x, movementInteprolation * Time.deltaTime);
-        finalMoveDirection.x = Mathf.Clamp(finalMoveDirection.x, finalMoveDirection.x, finalMoveDirection.x + 2f);
-        finalMoveDirection.z = Mathf.MoveTowards(player.transform.position.z, moveDirection.z, movementInteprolation * Time.deltaTime);
-        finalMoveDirection.z = Mathf.Clamp(finalMoveDirection.z, finalMoveDirection.z, finalMoveDirection.z + 2f);
-
-        player.Move(finalMoveDirection * moveSpeed *  Time.deltaTime);
+        finalMoveDirection = Vector3.MoveTowards(finalMoveDirection, targetDirection, movementInteprolation * Time.deltaTime);
+        player.Move(finalMoveDirection * moveSpeed * Time.deltaTime);
     }
 }
