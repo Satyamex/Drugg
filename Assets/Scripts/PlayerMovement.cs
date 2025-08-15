@@ -1,16 +1,28 @@
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+internal sealed class PlayerMovement : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    [Header("Refrences")]
+    [SerializeField] private CharacterController player;
 
-    // Update is called once per frame
-    void Update()
+    [Header("Fields")]
+    [SerializeField] private float moveSpeed;
+    [SerializeField] private float movementInteprolation;
+
+    private Vector3 moveDirection, finalMoveDirection = default;
+    private float inputX, inputY = default;
+
+    private void Update()
     {
-        
+        inputX = Input.GetAxisRaw("Horizontal");
+        inputY = Input.GetAxisRaw("Vertical");
+        moveDirection = new Vector3(inputX, 0f, inputY);
+
+        finalMoveDirection.x = Mathf.MoveTowards(player.transform.position.x, moveDirection.x, movementInteprolation * Time.deltaTime);
+        finalMoveDirection.x = Mathf.Clamp(finalMoveDirection.x, finalMoveDirection.x, finalMoveDirection.x + 2f);
+        finalMoveDirection.z = Mathf.MoveTowards(player.transform.position.z, moveDirection.z, movementInteprolation * Time.deltaTime);
+        finalMoveDirection.z = Mathf.Clamp(finalMoveDirection.z, finalMoveDirection.z, finalMoveDirection.z + 2f);
+
+        player.Move(finalMoveDirection * moveSpeed *  Time.deltaTime);
     }
 }
