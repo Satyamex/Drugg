@@ -440,6 +440,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 7561880143632486268, guid: 342367e2e8eec4142b4ec2c07f111e8c, type: 3}
+      propertyPath: ShapeModule.m_Scale.x
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7561880143632486268, guid: 342367e2e8eec4142b4ec2c07f111e8c, type: 3}
+      propertyPath: InitialModule.startSpeed.scalar
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7561880143632486268, guid: 342367e2e8eec4142b4ec2c07f111e8c, type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7561880143632486268, guid: 342367e2e8eec4142b4ec2c07f111e8c, type: 3}
+      propertyPath: InitialModule.startSpeed.minScalar
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7561880143632486268, guid: 342367e2e8eec4142b4ec2c07f111e8c, type: 3}
+      propertyPath: InitialModule.startLifetime.minScalar
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 7920113927506093038, guid: 342367e2e8eec4142b4ec2c07f111e8c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
